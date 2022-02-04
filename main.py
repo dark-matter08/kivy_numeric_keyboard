@@ -7,11 +7,10 @@ from kivy.uix.vkeyboard import VKeyboard
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 
-KV= '''
-
+KV = '''
 <NumericKeyboardScreen>:
-    name:'regitration_window1'
-    text_field: text_field
+    name: 'numeric_screen'
+
     RelativeLayout:
 
         MDToolbar:
@@ -65,7 +64,6 @@ class NumericKeyboardScreen(MDScreen):
             keyboard_anchor.clear_widgets()
             self.focus_count = 0
 
-
 class NumericKeyboard(VKeyboard):
     text_field = ObjectProperty()
     custom_vk_layout = ObjectProperty('numeric.json')
@@ -102,13 +100,6 @@ class NumericKeyboard(VKeyboard):
         else:
             self.text_field.text += u"{0}".format(keycode)
 
-
-    def _keyboard_close(self, *args):
-        """ The active keyboard is being closed. """
-        if self._keyboard:
-            self._keyboard.unbind(on_key_down=self.key_down)
-            self._keyboard.unbind(on_key_up=self.key_up)
-            self._keyboard = None
 
 class MainApp(MDApp):
     def build(self):
